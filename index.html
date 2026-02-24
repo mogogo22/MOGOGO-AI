@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>😆 فضفضلي</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Noise Overlay -->
+  <div class="noise"></div>
+
+  <!-- API Key Modal -->
+  <div id="key-modal" class="modal-overlay">
+    <div class="modal-box" style="text-align:center;">
+      <h2>🔑 حط الـ API Key بتاعك</h2>
+      <p style="color:var(--text-dim);font-size:0.9rem;margin-bottom:20px;line-height:1.7;">
+        روح على <a href="https://aistudio.google.com" target="_blank" style="color:var(--accent);">aistudio.google.com</a><br/>
+        ← API Keys ← Create API Key ← انسخ والصق هنا
+      </p>
+      <div style="display:flex;gap:10px;">
+        <input id="key-input" type="password" placeholder="AIza..." style="flex:1;padding:12px 16px;border-radius:10px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:inherit;font-size:0.9rem;outline:none;" onkeydown="if(event.key==='Enter')saveKey()"/>
+        <button onclick="saveKey()" style="padding:12px 18px;border-radius:10px;background:var(--accent);color:white;border:none;cursor:pointer;font-family:inherit;font-weight:600;">يلا</button>
+      </div>
+      <p style="color:var(--text-muted);font-size:0.78rem;margin-top:12px;">🔒 الـ Key بيتحفظ على جهازك بس، مش بيتبعت لأي حد</p>
+    </div>
+  </div>
+
+  <!-- Landing Page -->
+  <div id="landing" class="page active">
+    <div class="landing-bg">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+    <header class="landing-header">
+      <div class="logo">فضفضلي</div>
+      <div class="nav-btns">
+      <div class="nav-btns">
+        <button class="btn-nav active" onclick="showSection('mojo')">إتكلم مع موجو - مهند</button>
+        <button class="btn-nav" onclick="showSection('self')">كلم نفسك</button>
+        <button class="btn-nav" onclick="resetKey()" title="تغيير الـ API Key">🔑</button>
+      </div>
+    </header>
+
+    <main class="landing-main">
+      <div class="hero">
+        <div class="hero-badge">🤫 مساحتك الخاصة</div>
+        <h1 class="hero-title">زعلان؟ مضايق؟<br/><span class="gradient-text">فضفض براحتك.</span></h1>
+        <p class="hero-desc">
+          موجو - مهند. مش بس ذكاء اصطناعي — ده نسخة من صاحبك اللي بيسمعك من غير ما يحكم عليك.<br/>
+          مش لازم تكون كويس هنا. كن نفسك بس.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="goToChat()">
+            <span>إتكلم مع موجو - مهند</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button class="btn-secondary" onclick="goToSelf()">
+            <span>كلم نفسك</span>
+          </button>
+        </div>
+        <button class="about-btn" onclick="toggleAbout()" title="اعرف أكتر عن موجو">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          مين موجو - مهند ؟
+        </button>
+      </div>
+    </main>
+
+    <!-- About Modal -->
+    <div id="about-modal" class="modal-overlay" onclick="closeAbout(event)">
+      <div class="modal-box">
+        <button class="modal-close" onclick="toggleAbout()">✕</button>
+        <h2>🧠 موجو - مهند — شخصيته الحقيقية</h2>
+        <div class="about-content">
+          <div class="about-item">
+            <span class="about-icon">🕊️</span>
+            <div>
+              <strong>هادي ومسمعك</strong>
+              <p>مش رغاي، بس لما تكلمه بيكون معاك بكل حاجة.</p>
+            </div>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">🎭</span>
+            <div>
+              <strong>الكاريزما المخفية</strong>
+              <p>شخصيته فيها حاجة بتجذبك، بس مش بيتباهى بيها.</p>
+            </div>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">🕌</span>
+            <div>
+              <strong>مسلم وفخور</strong>
+              <p>إيمانه جزء من كلامه، مش بيخبيه.</p>
+            </div>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">💻</span>
+            <div>
+              <strong>عاشق التقنية والإيدت</strong>
+              <p>بيحب البرمجة والمونتاج — ده عالمه.</p>
+            </div>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">🚶‍♂️</span>
+            <div>
+              <strong>الجرح اللي وراء الابتسامة</strong>
+              <p>دايمًا بيمشي من المدرسة مكسور من جوه، بس بيخبيها بابتسامة مزيفة قدام الكل. عارف الألم من جوه لأنه عايشه.</p>
+            </div>
+          </div>
+          <div class="about-item">
+            <span class="about-icon">🫂</span>
+            <div>
+              <strong>بيحلم بصحاب حقيقيين</strong>
+              <p>مش بيهتم بالي مش بيحبه، بس نفسه يلاقي ناس بتحبه صح.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Page -->
+  <div id="chat-page" class="page">
+    <div class="chat-sidebar">
+      <div class="sidebar-header">
+        <div class="logo-small">موجو - مهند</div>
+        <button class="new-chat-btn" onclick="newChat()">+ محادثة جديدة</button>
+      </div>
+      <div class="chat-history" id="chat-history">
+        <!-- chats listed here -->
+      </div>
+      <div class="sidebar-footer">
+        <button class="back-btn" onclick="goToLanding()">← الرئيسية</button>
+      </div>
+    </div>
+
+    <div class="chat-main">
+      <div class="chat-topbar">
+        <div class="ai-info">
+          <div class="ai-avatar">م</div>
+          <div>
+            <div class="ai-name">مهند - موجو</div>
+            <div class="ai-status">متصل دايمًا 🟢</div>
+          </div>
+        </div>
+        <button class="delete-chat-btn" onclick="deleteCurrentChat()" title="احذف المحادثة">🗑️</button>
+      </div>
+
+      <!-- Name prompt -->
+      <div id="name-prompt" class="name-prompt">
+        <div class="name-prompt-box">
+          <p>👋 قبل ما نبدأ.. إيه اسمك؟</p>
+          <div class="name-input-row">
+            <input type="text" id="user-name-input" placeholder="اكتب اسمك هنا..." maxlength="30"/>
+            <button onclick="saveName()">يلا نبدأ</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="messages" class="messages">
+        <!-- messages go here -->
+      </div>
+
+      <div class="chat-input-area">
+        <textarea id="msg-input" placeholder="قول اللي في بالك..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+        <button class="send-btn" onclick="sendMessage()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Self Talk Page -->
+  <div id="self-page" class="page">
+    <div class="self-container">
+      <button class="back-btn-top" onclick="goToLanding()">← رجوع</button>
+      <div id="self-form-section">
+        <div class="self-header">
+          <h2>🪞 كلم نفسك</h2>
+          <p>جاوب على الأسئلة دي بصدق، وهنعمل لك نسخة من نفسك تكلمك.</p>
+        </div>
+        <form id="self-form" class="self-form">
+          <div class="form-group">
+            <label>اسمك إيه؟</label>
+            <input type="text" name="name" placeholder="اسمك الحقيقي أو اللقب" required/>
+          </div>
+          <div class="form-group">
+            <label>إيه أكتر حاجة بتحبها في الحياة؟</label>
+            <textarea name="loves" placeholder="مثلاً: الموسيقى، الأكل، الهدوء..." rows="2" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>إيه أكتر حاجة بتضايقك؟</label>
+            <textarea name="hates" placeholder="المواقف، الناس، الأحاسيس..." rows="2" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>صف شخصيتك في جملة أو جملتين</label>
+            <textarea name="personality" placeholder="أنا شخص..." rows="2" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>إيه أحلامك أو اللي بتتمناه؟</label>
+            <textarea name="dreams" placeholder="في الحياة، في الشغل، في العلاقات..." rows="2" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>إيه أكتر حاجة بتتعب منها دلوقتي؟</label>
+            <textarea name="struggle" placeholder="سواء ضغط أو زهق أو حاجة تانية..." rows="2" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary full-width">
+            <span>إنشاء محادثة مع نفسك ✨</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Self Chat -->
+      <div id="self-chat-section" class="hidden">
+        <div class="chat-topbar">
+          <div class="ai-info">
+            <div class="ai-avatar self-av">أنت</div>
+            <div>
+              <div class="ai-name">نسخة منك</div>
+              <div class="ai-status">بتكلم نفسك 🪞</div>
+            </div>
+          </div>
+          <button onclick="resetSelfChat()" class="delete-chat-btn">↩️ من الأول</button>
+        </div>
+        <div id="self-messages" class="messages"></div>
+        <div class="chat-input-area">
+          <textarea id="self-msg-input" placeholder="قول اللي في بالك لنفسك..." rows="1" onkeydown="handleSelfKey(event)" oninput="autoResize(this)"></textarea>
+          <button class="send-btn" onclick="sendSelfMessage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
