@@ -1,5 +1,5 @@
 // ===================== API KEY =====================
-const HARDCODED_KEY = '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';
+const HARDCODED_KEY = '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';
 let geminiKey = HARDCODED_KEY;
 
 function checkKey() {
@@ -360,3 +360,4 @@ function escapeHtml(text) {
     .replace(/>/g, '&gt;')
     .replace(/\n/g, '<br>');
 }
+
