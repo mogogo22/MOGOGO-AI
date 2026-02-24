@@ -1,11 +1,8 @@
 // ===================== API KEY =====================
-let geminiKey = localStorage.getItem('gemini_key') || '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';
+const HARDCODED_KEY = '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';
+let geminiKey = HARDCODED_KEY;
 
 function checkKey() {
-  if (!geminiKey) {
-    document.getElementById('key-modal').classList.add('show');
-    return false;
-  }
   return true;
 }
 
@@ -18,8 +15,8 @@ function saveKey() {
 }
 
 function resetKey() {
-  document.getElementById('key-input').value = '';
-  document.getElementById('key-modal').classList.add('show');
+  const newKey = prompt('حط الـ API Key الجديد هنا:');
+  if (newKey) { geminiKey = newKey; localStorage.setItem('gemini_key', newKey); }
 }
 
 // ===================== MOJO PERSONALITY =====================
