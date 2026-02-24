@@ -360,4 +360,3 @@ function escapeHtml(text) {
     .replace(/>/g, '&gt;')
     .replace(/\n/g, '<br>');
 }
-
